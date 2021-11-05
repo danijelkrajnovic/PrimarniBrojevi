@@ -1,0 +1,61 @@
+Nobula, general developer test
+
+Cilj ovoga zadatka je da se testira generalno znanje programiranja, vještina u baratanju barem nekih tehnologija i snalažljivost da se snađete s onim zahtjevima koje inače ne koristite.
+Izbor tehnologije, jezika i slično je potpuno na vama.
+
+
+Korak 1
+
+	Kreirajte backend sustav koristeći tehnologiju po želji koji će imati REST API endpoint ovog tipa:
+
+	GET 
+		/primes/:n
+	RESPONSE 
+		[2, 3, 5, 7]
+
+	Ovaj servis mora vratiti prvih n prostih brojeva.
+	Dakle, primjeri:
+		/primes/3 -> [2, 3, 5]
+		/primes/11 -> [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
+
+	Neka sustav počne od broja 2.
+
+Korak 2
+	
+	Koristeći pristup dinamičkog programiranja (https://en.wikipedia.org/wiki/Dynamic_programming) implementirajte određenu optimizaciju servisa.
+	Ideja je da nekako perzistirate komad svojeg rješenja.
+
+	Očekivano ponašanje je da kada prvi put pozovem servis ovako:
+		/primes/56 -> rješenje čekam neko vrijeme
+	Međutim, ako kao neposredno nakon toga pozovem opet, trebalo bi mi se vratiti nakon ~150 ms.
+
+	Za ovo rješenje dozvoljeno je koristiti koju god tehnologiju želite.
+	In-memory baze poput Redis-a, NoSQL baze poput Monga, Relacijske baze poput Postgres-a, spremanje dokumenta na filesystem s tim podatcima, sve je dopušteno dokle god izvrši optimizaciju poziva.
+
+Korak 3
+
+	Kreirajte određeni cleaner vašeg dinamičkog stanja.
+	Cleaner radi tako da se periodično pozove i očisti memoriju iz prethodnog koraka.
+
+	Napravite cleaner konfigurabilnim. 
+	Potrebno je moći namjestiti koliko često će se memorija čistiti (svakih 10 minuta, jednom dnevno,...).
+
+	EXTRA bodovi: Osim što možemo namjestiti koliko se često memorija prazni, bilo bi dobro definirati na neki način do koje se točke prazni. Odnosno možda se ne mora isprazniti potpuno. Detalji ovoga ovise o tome kako ste implementirali Korak 2.
+
+Korak 4
+	
+	Napraviti novi endpoint kojem se može isforsirati memory clean iz "Korak 3"
+	npr POST /primes/clean
+
+	Napraviti UI koristeći tehnologiju po izboru koja će imati gumb za poziv clean endpointa.
+	Također, na neki način prikazati što je trenutno u in-memory optimizacijskoj bazi. Ovo ovisi o tome kako je riješen Korak 2.
+
+
+Delivery
+
+Rješenje možete dostaviti preko git repozitorija (gitlab, github, bitbucket,...).
+Zahvalni smo ako ujedno i napišete Readme file koji objašnjava kako rješenje pokrenuti.
+
+		
+Puno Vam Hvala na interesu i nadamo se da ćete biti uspješni u rješavanju zadatka
+Vladimir
